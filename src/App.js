@@ -1,25 +1,43 @@
 import "./App.css";
+import "./css/mainAnimation.css";
 import server from "./server.png";
 import client from "./client.png";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import H1withStroke from "./helper/H1withStroke";
+import billyda from "./billyda.png";
 function App() {
   const mainRef = useRef();
   const projectsRef = useRef();
   const skillsRef = useRef();
   const contactRef = useRef();
+  const [navOpen, setNavOpen] = useState(false);
 
   const executeScrollTo = (ref) =>
     window.scrollTo({
       top: ref.current.offsetTop,
       behavior: "smooth",
     });
+  const openNav = () => {
+    setNavOpen(!navOpen);
+  };
   return (
     <div className="App">
-      <nav>
+      <button className="navBtn" onClick={openNav}>
+        <i class="fa-solid fa-burger"></i>
+      </button>
+      <nav style={{ display: navOpen ? "inline-block" : "none" }}>
         <div>
           <button
             onClick={() => {
+              setNavOpen(false);
+            }}
+          >
+            X
+          </button>
+          <button
+            onClick={() => {
               executeScrollTo(mainRef);
+              setNavOpen(false);
             }}
           >
             About me
@@ -27,6 +45,7 @@ function App() {
           <button
             onClick={() => {
               executeScrollTo(projectsRef);
+              setNavOpen(false);
             }}
           >
             Projects
@@ -34,6 +53,7 @@ function App() {
           <button
             onClick={() => {
               executeScrollTo(skillsRef);
+              setNavOpen(false);
             }}
           >
             Skills
@@ -41,6 +61,7 @@ function App() {
           <button
             onClick={() => {
               executeScrollTo(contactRef);
+              setNavOpen(false);
             }}
           >
             Contact
@@ -57,66 +78,105 @@ function App() {
             <span>I like bringing creative designs to life</span>
           </div>
         </div>
-        <div className="main-right">일러스트 들어갈 곳</div>
-      </section>
-      <section className="projects" ref={projectsRef}>
-        <h1>Projects</h1>
-        <div>
-          <div className="project anbda">
-            <h1>ANABADA</h1>
-            <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
-            </p>
-            <div className="tools">
-              <label>React</label>
-              <label>Naver search API</label>
-              <label>NodeJS</label>
-              <label>Express</label>
-              <label>MySQL</label>
-            </div>
+        <div className="main-right">
+          <div className="circle1 circle1-solid" />
+          <div className="circle1 circle1-outline" onClick={openNav}>
+            <i class="fa-solid fa-burger"></i>
           </div>
-          <div className="project scope">
-            <h1>Scope</h1>
-            <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
-            </p>
-            <div className="tools">
-              <label>React</label>
-              <label>React Router</label>
-              <label>Firebase</label>
-            </div>
+          <div className="circle2">
+            <div className="circle3" />
           </div>
-          <div className="project tomodoro">
-            <h1>TOMODORO</h1>
-            <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
-            </p>
-            <div className="tools">
-              <label>React</label>
-              <label>Naver search API</label>
-              <label>NodeJS</label>
-              <label>Express</label>
-            </div>
-          </div>
+
+          {/* <div className="circle3" /> */}
+          <div className="oval1 oval1-outline" />
+          <div className="oval1 oval1-solid" />
+          <div className="oval1 oval2-outline" />
+          <div className="oval1 oval2-solid" />
         </div>
       </section>
-      <section className="skills" ref={skillsRef}>
-        <h1>Skills</h1>
+      <div className="header" ref={projectsRef}>
+        <h1 className="h1shadow">Projects</h1>
+      </div>
+      <section className="projects">
+        {/* <H1withStroke text="Projects" /> */}
+
+        <div className="project anbda">
+          <div className="project-info">
+            <h1>BillyDa</h1>
+            <span className="tools">
+              #React #Naver #search #API #NodeJS #Express #MySQL
+            </span>
+            <p>
+              desription here ef attribute is required for an anchor to be
+              keyboard accessible. Provide a valid, navigable address as the
+              href value. If you cannot provide an href, but still need the
+              element to resemble a link, use a button and change it with
+              appropriate styles. Learn more:
+              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+            </p>
+          </div>
+          <img src={billyda} alt="img" />
+        </div>
+        <div className="project scope">
+          <div className="project-info">
+            <h1>Scope</h1>
+            <span className="tools">
+              #React #Naver #search #API #NodeJS #Express #firebase
+            </span>
+            <p>
+              desription here ef attribute is required for an anchor to be
+              keyboard accessible. Provide a valid, navigable address as the
+              href value. If you cannot provide an href, but still need the
+              element to resemble a link, use a button and change it with
+              appropriate styles. Learn more:
+              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+            </p>
+          </div>
+          <img src={billyda} alt="img" />
+        </div>
+        <div className="project tomodoro">
+          <div className="project-info">
+            <h1>
+              TOMO
+              <br />
+              DORO
+            </h1>
+            <span className="tools">
+              #React #Naver API #NodeJS #Express #MySQL
+            </span>
+            <p>
+              desription here ef attribute is required for an anchor to be
+              keyboard accessible. Provide a valid, navigable address as the
+              href value. If you cannot provide an href, but still need the
+              element to resemble a link, use a button and change it with
+              appropriate styles. Learn more:
+              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+            </p>
+          </div>
+          <img src={billyda} alt="img" />
+        </div>
+        <div className="project spotify">
+          <div className="project-info">
+            <h1>Spotify</h1>
+            <span className="tools">
+              #React #Naver #search #API #NodeJS #Express #MySQL
+            </span>
+            <p>
+              desription here ef attribute is required for an anchor to be
+              keyboard accessible. Provide a valid, navigable address as the
+              href value. If you cannot provide an href, but still need the
+              element to resemble a link, use a button and change it with
+              appropriate styles. Learn more:
+              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+            </p>
+          </div>
+          <img src={billyda} alt="img" />
+        </div>
+      </section>
+      <div className="header" ref={skillsRef}>
+        <h1 className="h1shadow">Skills</h1>
+      </div>
+      <section className="skills">
         <div>
           <div className="skill">
             <img src={client} alt="server" width="100px" />
@@ -141,8 +201,10 @@ function App() {
           </div>
         </div>
       </section>
-      <section className="contact" ref={contactRef}>
-        <h1>Contact</h1>
+      <div className="header" ref={contactRef}>
+        <h1 className="h1shadow">Contact</h1>
+      </div>
+      <section className="contact">
         <div>
           {/* <img
             src="https://cdn-icons-png.flaticon.com/512/25/25231.png"

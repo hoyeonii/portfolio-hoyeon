@@ -1,0 +1,142 @@
+.circle1 {
+  position: absolute;
+  width: 15vw;
+  height: 15vw;
+
+  /* transform: translate(-50%, -50%); */
+  border-radius: 50%;
+  z-index: 1;
+}
+.circle1-outline {
+  background-color: var(--main-base);
+  animation: upDown 5s infinite;
+  top: 30%;
+  left: 56%;
+  /* text-align: center; */
+  font-size: 8vw;
+  cursor: pointer;
+}
+.circle1-outline i {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--main-highlight);
+}
+.circle1-solid {
+  /* background-color: aliceblue; */
+  background-color: transparent;
+  top: 32%;
+  left: 60%;
+  border: 2px solid var(--main-base);
+  animation: upDown 3s infinite;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-40px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/*circle2*/
+.circle2 {
+  position: absolute;
+  width: 30vw;
+  height: 30vw;
+
+  /* transform: translate(-50%, -50%); */
+  border-radius: 50%;
+  border: 2px dashed var(--main-base);
+  top: 30%;
+  left: 10%;
+  animation: rotates 10s infinite;
+}
+.circle3 {
+  position: absolute;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  background-color: var(--main-highlight);
+  top: 80%;
+  left: 10%;
+}
+/* .circle3 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  border: 2px dashed var(--main-base);
+  top: 56%;
+  left: 50%;
+  animation: myOrbit 10s infinite;
+} */
+@keyframes rotates {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* oval */
+.oval1 {
+  position: absolute;
+  width: 4.5vw;
+  height: 1.5vw;
+
+  /* transform: translate(-50%, -50%); */
+  border-radius: 20px;
+}
+.oval1-outline {
+  background-color: var(--main-blue);
+  animation: moveSide 3.3s infinite;
+  top: 20%;
+  left: 20%;
+}
+.oval1-solid {
+  /* background-color: aliceblue; */
+  background-color: transparent;
+  top: 21%;
+  left: 21%;
+  border: 2px solid var(--main-blue);
+  animation: moveSide 3s infinite;
+}
+
+/* oval2 */
+
+.oval2-outline {
+  background-color: var(--main-blue);
+  animation: moveSide 2.8s infinite;
+  top: 80%;
+  left: 80%;
+}
+.oval2-solid {
+  /* background-color: aliceblue; */
+  background-color: transparent;
+  top: 81%;
+  left: 81%;
+  border: 2px solid var(--main-blue);
+  animation: moveSide 3.2s infinite;
+}
+
+@keyframes moveSide {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}

@@ -5,12 +5,14 @@ import client from "./client.png";
 import React, { useRef, useState } from "react";
 import H1withStroke from "./helper/H1withStroke";
 import billyda from "./billyda.png";
+import spotify from "./spotify.png";
 function App() {
   const mainRef = useRef();
   const projectsRef = useRef();
   const skillsRef = useRef();
   const contactRef = useRef();
   const [navOpen, setNavOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(false);
 
   const executeScrollTo = (ref) =>
     window.scrollTo({
@@ -20,9 +22,48 @@ function App() {
   const openNav = () => {
     setNavOpen(!navOpen);
   };
+  // projectsRef.current && console.log(projectsRef.current.offsetTop);\
+  window.onscroll = function () {
+    if (projectsRef.current.offsetTop < window.pageYOffset) {
+      setNavVisible(true);
+    } else {
+      setNavVisible(false);
+    }
+  };
+
+  let projectInfo = document.querySelectorAll(".project-info");
+  projectInfo.forEach((info) => {
+    window.addEventListener("scroll", function () {
+      let value = window.scrollY;
+      // console.log(info);
+      // console.log(info + ":" + info.offsetTop +"" info.clientHeight +"vlaue"+value);
+      if (
+        info.offsetTop - (this.innerHeight * 4) / 5 < value &&
+        value < info.offsetTop + (info.clientHeight * 4) / 5
+      ) {
+        // console.log(this.innerHeight);
+        info.style.animation = "slide 0.5s ease-in-out forwards";
+      } else if (
+        info.offsetTop + info.clientHeight < value ||
+        value < info.offsetTop
+      ) {
+        // console.log("going back!!");s
+        info.style.animation = "slideBack 1s ease-in-out forwards";
+      }
+    });
+  });
+
+  // window.addEventListener("scroll", function () {
+  //   let value = window.scrollY;
+  //   console.log(value);
+  // });
   return (
     <div className="App">
-      <button className="navBtn" onClick={openNav}>
+      <button
+        className="navBtn"
+        onClick={openNav}
+        style={{ display: navVisible ? "inline-block" : "none" }}
+      >
         <i class="fa-solid fa-burger"></i>
       </button>
       <nav style={{ display: navOpen ? "inline-block" : "none" }}>
@@ -74,8 +115,11 @@ function App() {
           <h1>I AM</h1>
           <h1>HOYEON</h1>
           <div className="main-left-text">
-            <span>Frontend Developer from Seoul</span>
-            <span>I like bringing creative designs to life</span>
+            <span>Frontend Developer from Seoul living in Germany.</span>
+            <span>
+              I studied Educational Technology and Multi Media in uni, and love
+              solving problems and playing escape room.
+            </span>
           </div>
         </div>
         <div className="main-right">
@@ -101,76 +145,85 @@ function App() {
         {/* <H1withStroke text="Projects" /> */}
 
         <div className="project anbda">
+          <img src={billyda} alt="img" className="project-info-img" />
+
           <div className="project-info">
             <h1>BillyDa</h1>
-            <span className="tools">
-              #React #Naver #search #API #NodeJS #Express #MySQL
-            </span>
+            <div className="tools">
+              <span> #React #Search API #NodeJS #Express #MySQL</span>
+            </div>
             <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+              BillyDa means ‘borrow’ in Korean, and is a used Korean bookstore
+              in Europe. By using Book Search API, users can search and upload
+              books they have in 10 seconds, and text other users if they find a
+              book they want to read. Next would be implementing user rating
+              system to make users feel secure.
             </p>
+            <button
+              className="project-info-viewBtn"
+              onClick={() => {
+                window.open("https://main--deft-zuccutto-fdb883.netlify.app/");
+              }}
+            >
+              <p>VIEW SITE</p>
+            </button>
           </div>
-          <img src={billyda} alt="img" />
         </div>
         <div className="project scope">
+          <img src={billyda} alt="img" className="project-info-img" />
           <div className="project-info">
             <h1>Scope</h1>
-            <span className="tools">
-              #React #Naver #search #API #NodeJS #Express #firebase
-            </span>
+            <div className="tools">
+              <span> #React #Firebase #Figma #TeamProject</span>
+            </div>
             <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+              Scope is where you can upload your portfolio and get feedback from
+              others. My first project with UX/UI designers. We are still in
+              progress, making it better in both design and function wise. The
+              next step will be implementing a function where experts can give
+              them more detailed feedback than merely leaving comments.
             </p>
+            <button className="project-info-viewBtn">
+              <p>VIEW SITE</p>
+            </button>
           </div>
-          <img src={billyda} alt="img" />
         </div>
         <div className="project tomodoro">
+          <img src={billyda} alt="img" className="project-info-img" />
           <div className="project-info">
             <h1>
               TOMO
-              <br />
+              {/* <br /> */}
               DORO
             </h1>
-            <span className="tools">
-              #React #Naver API #NodeJS #Express #MySQL
-            </span>
+            <div className="tools">
+              <span> #React #search API #NodeJS #Express #MySQL</span>
+            </div>
             <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
+              Tomodoro is a customizable pomodoro timer that works on desktop &
+              mobile browser. The aim of this app is to help you focus on any
+              task you are working on, such as study, writing, or coding. This
+              app is inspired by Pomodoro Technique which is a time management
+              method developed by Francesco Cirillo.
             </p>
+            <button className="project-info-viewBtn">
+              <p>VIEW SITE</p>
+            </button>
           </div>
-          <img src={billyda} alt="img" />
         </div>
         <div className="project spotify">
+          <img src={spotify} alt="img" className="project-info-img" />
           <div className="project-info">
             <h1>Spotify</h1>
-            <span className="tools">
-              #React #Naver #search #API #NodeJS #Express #MySQL
-            </span>
-            <p>
-              desription here ef attribute is required for an anchor to be
-              keyboard accessible. Provide a valid, navigable address as the
-              href value. If you cannot provide an href, but still need the
-              element to resemble a link, use a button and change it with
-              appropriate styles. Learn more:
-              https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-
-            </p>
+
+            <div className="tools">
+              <span> #JavaScript #CSS #MockUp</span>
+            </div>
+            <p>Spotify landing page Mockup with responsive design.</p>
+            <button className="project-info-viewBtn">
+              <p>VIEW SITE</p>
+            </button>
           </div>
-          <img src={billyda} alt="img" />
         </div>
       </section>
       <div className="header" ref={skillsRef}>
@@ -179,9 +232,9 @@ function App() {
       <section className="skills">
         <div>
           <div className="skill">
-            <img src={client} alt="server" width="100px" />
+            <img src={client} alt="client" width="100px" />
 
-            <h2>Client Side</h2>
+            <h2>Client</h2>
             <ul>
               <li>HTML5</li>
               <li>JavaScript</li>
@@ -192,13 +245,26 @@ function App() {
           </div>
           <div className="skill">
             <img src={server} alt="server" width="100px" />
-            <h2>Server Side</h2>
+            <h2>Server</h2>
             <ul>
               <li>Node JS</li>
               <li>Express</li>
               <li>MySQL</li>
+              <li>Firebase</li>
+              <li>Java</li>
             </ul>
           </div>
+          {/* <div className="skill">
+            <img src={server} alt="other" width="100px" />
+            <h2>Other</h2>
+            <ul>
+              <li>Adobe PS</li>
+              <li>Adobe IL</li>
+              <li>Figma</li>
+              <li>Firebase</li>
+              <li>Java</li>
+            </ul>
+          </div> */}
         </div>
       </section>
       <div className="header" ref={contactRef}>

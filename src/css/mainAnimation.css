@@ -9,12 +9,13 @@
 }
 .circle1-outline {
   background-color: var(--main-base);
-  animation: upDown 5s infinite;
+  animation: upDown 1.8s infinite;
   top: 30%;
-  left: 56%;
+  left: 50%;
   /* text-align: center; */
   font-size: 8vw;
   cursor: pointer;
+  animation-direction: alternate;
 }
 .circle1-outline i {
   position: absolute;
@@ -27,22 +28,23 @@
   /* background-color: aliceblue; */
   background-color: transparent;
   top: 32%;
-  left: 60%;
+  left: 54%;
   border: 2px solid var(--main-base);
-  animation: upDown 3s infinite;
+  animation: upDown 2s infinite;
+  animation-direction: alternate;
 }
 
 @keyframes upDown {
   0% {
     transform: translateY(0px);
   }
-  50% {
+  100% {
     transform: translateY(-40px);
   }
 
-  100% {
+  /* 100% {
     transform: translateY(0px);
-  }
+  } */
 }
 
 /*circle2*/

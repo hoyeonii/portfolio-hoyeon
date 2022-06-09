@@ -17,6 +17,17 @@
   cursor: pointer;
   animation-direction: alternate;
 }
+.circle1-outline div {
+  position: absolute;
+  width: 12vw;
+  height: 12vw;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  border: 0.5rem dashed var(--main-highlight);
+}
 .circle1-outline i {
   position: absolute;
   top: 48%;
@@ -62,8 +73,8 @@
 }
 .circle3 {
   position: absolute;
-  width: 3vw;
-  height: 3vw;
+  width: 5vw;
+  height: 5vw;
   border-radius: 50%;
   background-color: var(--main-highlight);
   top: 80%;

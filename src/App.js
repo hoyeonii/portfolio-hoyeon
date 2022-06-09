@@ -6,6 +6,10 @@ import React, { useRef, useState } from "react";
 import H1withStroke from "./helper/H1withStroke";
 import billyda from "./billyda.png";
 import spotify from "./spotify.png";
+import melacafe from "./melacafe.png";
+import scope from "./scope.png";
+import tomodoro from "./tomodoro.png";
+import { init, sendForm } from "emailjs-com";
 function App() {
   const mainRef = useRef();
   const projectsRef = useRef();
@@ -13,7 +17,39 @@ function App() {
   const contactRef = useRef();
   const [navOpen, setNavOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
+  const [errorMessageShowing, setErrorMessageShowing] = useState(false);
+  const [successMessageShowing, setSuccessMessageShowing] = useState(false);
+  const form = useRef();
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+    if (e.target[0].value && e.target[1].value && e.target[2].value) {
+      e.target.reset();
+      sendForm(
+        "service_pr3nh7g",
+        "template_3sou21k",
+        form.current,
+        "qFBgldcC9rDhU5pT1"
+      ).then(
+        (result) => {
+          console.log(result.text);
+          setSuccessMessageShowing(true);
+          setTimeout(() => {
+            setSuccessMessageShowing(false);
+          }, 5000);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    } else {
+      console.log("fill all the inputbox");
+      setErrorMessageShowing(true);
+      setTimeout(() => {
+        setErrorMessageShowing(false);
+      }, 5000);
+    }
+  };
   const executeScrollTo = (ref) =>
     window.scrollTo({
       top: ref.current.offsetTop,
@@ -31,32 +67,42 @@ function App() {
     }
   };
 
+  let sectionHeader = document.querySelectorAll(".h1shadow");
+  sectionHeader.forEach((header) => {
+    window.addEventListener("scroll", function () {
+      let value = window.scrollY;
+      if (
+        header.offsetTop - this.innerHeight < value &&
+        value < header.offsetTop + header.clientHeight
+      ) {
+        header.style.animation = "slideDown 1s ease-in-out";
+      } else if (
+        header.offsetTop + header.clientHeight < value ||
+        value < header.offsetTop
+      ) {
+        header.style.animation = "slideBack 1s ease-in-out forwards";
+      }
+    });
+  });
+
   let projectInfo = document.querySelectorAll(".project-info");
   projectInfo.forEach((info) => {
     window.addEventListener("scroll", function () {
       let value = window.scrollY;
-      // console.log(info);
-      // console.log(info + ":" + info.offsetTop +"" info.clientHeight +"vlaue"+value);
       if (
         info.offsetTop - (this.innerHeight * 4) / 5 < value &&
         value < info.offsetTop + (info.clientHeight * 4) / 5
       ) {
-        // console.log(this.innerHeight);
         info.style.animation = "slide 0.5s ease-in-out forwards";
       } else if (
         info.offsetTop + info.clientHeight < value ||
         value < info.offsetTop
       ) {
-        // console.log("going back!!");s
         info.style.animation = "slideBack 1s ease-in-out forwards";
       }
     });
   });
 
-  // window.addEventListener("scroll", function () {
-  //   let value = window.scrollY;
-  //   console.log(value);
-  // });
   return (
     <div className="App">
       <button
@@ -124,7 +170,11 @@ function App() {
         </div>
         <div className="main-right">
           <div className="circle1 circle1-solid" />
+          <div className="circle1 circle1-outline" />
+
           <div className="circle1 circle1-outline" onClick={openNav}>
+            <div className="circle1-innerCircle" />
+
             <i class="fa-solid fa-burger"></i>
           </div>
           <div className="circle2">
@@ -170,7 +220,7 @@ function App() {
           </div>
         </div>
         <div className="project scope">
-          <img src={billyda} alt="img" className="project-info-img" />
+          <img src={scope} alt="img" className="project-info-img" />
           <div className="project-info">
             <h1>Scope</h1>
             <div className="tools">
@@ -183,13 +233,18 @@ function App() {
               next step will be implementing a function where experts can give
               them more detailed feedback than merely leaving comments.
             </p>
-            <button className="project-info-viewBtn">
+            <button
+              className="project-info-viewBtn"
+              onClick={() => {
+                window.open("https://profile-review.web.app/");
+              }}
+            >
               <p>VIEW SITE</p>
             </button>
           </div>
         </div>
         <div className="project tomodoro">
-          <img src={billyda} alt="img" className="project-info-img" />
+          <img src={tomodoro} alt="img" className="project-info-img" />
           <div className="project-info">
             <h1>
               TOMO
@@ -197,7 +252,7 @@ function App() {
               DORO
             </h1>
             <div className="tools">
-              <span> #React #search API #NodeJS #Express #MySQL</span>
+              <span> #React #DragAndDrop </span>
             </div>
             <p>
               Tomodoro is a customizable pomodoro timer that works on desktop &
@@ -206,7 +261,31 @@ function App() {
               app is inspired by Pomodoro Technique which is a time management
               method developed by Francesco Cirillo.
             </p>
-            <button className="project-info-viewBtn">
+            <button
+              className="project-info-viewBtn"
+              onClick={() => {
+                window.open("https://hoyeonii.github.io/pomodoro-timer-app/");
+              }}
+            >
+              <p>VIEW SITE</p>
+            </button>
+          </div>
+        </div>
+        <div className="project melacafe">
+          <img src={melacafe} alt="img" className="project-info-img" />
+          <div className="project-info">
+            <h1>Melacafe</h1>
+
+            <div className="tools">
+              <span>#HTML #CSS #JavaScript</span>
+            </div>
+            <p>Cafe landing page with responsive design.</p>
+            <button
+              className="project-info-viewBtn"
+              onClick={() => {
+                window.open("https://hoyeonii.github.io/cafe-landing-page/");
+              }}
+            >
               <p>VIEW SITE</p>
             </button>
           </div>
@@ -217,10 +296,15 @@ function App() {
             <h1>Spotify</h1>
 
             <div className="tools">
-              <span> #JavaScript #CSS #MockUp</span>
+              <span> #HTML #CSS #JavaScript #MockUp</span>
             </div>
             <p>Spotify landing page Mockup with responsive design.</p>
-            <button className="project-info-viewBtn">
+            <button
+              className="project-info-viewBtn"
+              onClick={() => {
+                window.open("https://main--deft-zuccutto-fdb883.netlify.app/");
+              }}
+            >
               <p>VIEW SITE</p>
             </button>
           </div>
@@ -277,6 +361,19 @@ function App() {
             alt="github"
             width="30px"
           /> */}
+          {successMessageShowing && (
+            <span>Your message was sent successfully!</span>
+          )}
+          {errorMessageShowing && <span>Please fill in all the fields</span>}
+          <form ref={form} onSubmit={sendEmail}>
+            {/* <label>Name</label> */}
+            <input type="text" name="user_name" placeholder="Name" />
+            {/* <label>Email</label> */}
+            <input type="email" name="user_email " placeholder="Email" />
+            {/* <label>Message</label> */}
+            <textarea name="message" placeholder="Message" />
+            <input type="submit" value="Send" />
+          </form>
           <a href="https://github.com/hoyeonii">
             <i class="fa-brands fa-github"></i>
             <span>https://github.com/hoyeonii</span>

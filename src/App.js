@@ -246,11 +246,7 @@ function App() {
         <div className="project tomodoro">
           <img src={tomodoro} alt="img" className="project-info-img" />
           <div className="project-info">
-            <h1>
-              TOMO
-              {/* <br /> */}
-              DORO
-            </h1>
+            <h1>TOMODORO</h1>
             <div className="tools">
               <span> #React #DragAndDrop </span>
             </div>
@@ -302,7 +298,7 @@ function App() {
             <button
               className="project-info-viewBtn"
               onClick={() => {
-                window.open("https://main--deft-zuccutto-fdb883.netlify.app/");
+                window.open("https://hoyeonii.github.io/spotify-mockup/");
               }}
             >
               <p>VIEW SITE</p>

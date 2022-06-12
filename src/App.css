@@ -220,10 +220,13 @@ section {
   }
 }
 
-.project img {
+.project-info-img {
   width: 40%;
-  /* height: auto; */
+  height: auto;
   margin-left: auto;
+}
+.project iframe {
+  height: 60%;
 }
 @keyframes fadeIn {
   from {

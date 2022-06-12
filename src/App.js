@@ -195,8 +195,17 @@ function App() {
         {/* <H1withStroke text="Projects" /> */}
 
         <div className="project anbda">
-          <img src={billyda} alt="img" className="project-info-img" />
+          {/* <img src={billyda} alt="img" className="project-info-img" /> */}
 
+          <iframe
+            className="project-info-img"
+            src="https://www.youtube.com/embed/yMIxqQqFUJY"
+            frameBorder="0"
+            height="100%"
+            // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
           <div className="project-info">
             <h1>BillyDa</h1>
             <div className="tools">

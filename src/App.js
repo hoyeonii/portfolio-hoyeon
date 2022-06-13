@@ -201,7 +201,6 @@ function App() {
             className="project-info-img"
             src="https://www.youtube.com/embed/yMIxqQqFUJY"
             frameBorder="0"
-            height="100%"
             // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             title="Embedded youtube"
@@ -229,7 +228,15 @@ function App() {
           </div>
         </div>
         <div className="project scope">
-          <img src={scope} alt="img" className="project-info-img" />
+          {/* <img src={scope} alt="img" className="project-info-img" /> */}
+          <iframe
+            className="project-info-img"
+            src="https://www.youtube.com/embed/EZfo1895iT8"
+            frameBorder="0"
+            // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Embedded youtube"
+          />
           <div className="project-info">
             <h1>Scope</h1>
             <div className="tools">
